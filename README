@@ -1,0 +1,58 @@
+
+Prototypal Object Oriented Programing (or poop for short) -- It's the Shit!
+
+While it's rarely, if ever, a good idea to modify/extend primitives,  I wanted a clean and simple way of extending objects with as little syntax as possible.  More a thought exercise than anything, this implementation came as a result of observing "yet another classical vs. protoypal inheritance argument" (YACPIA).  Sure I've heard YACPIAs before; I myself tend to take a more pseudo-classical approach (I know, there's "yet another argument" for that too!), but this time it became a great opportunity to drop a load of JS (okay, 25 lines does not a load make -- pinch a loaf?).
+
+
+Usage:
+
+//load poop
+poop();
+
+//Create a base object
+var car = Object.create({
+  init: function () {
+    console.log('I\'m a car');
+  },
+  seats: 4,
+  wheels: 4
+})
+
+car.wheels
+  returns 4
+
+car.seats
+  returns 4
+
+//van inherits from car
+var van = car.extend({
+  init: function () {
+    console.log('I\'m a van');
+  },
+  seats: 6
+});
+
+van.wheels
+  returns 4
+
+van.seats
+  returns 6
+
+
+//bus inherits from van
+var bus = van.extend({
+  init: function () {
+    console.log('I\'m a bus');
+  },
+  seats: 144,
+  wheels: 8
+});
+
+bus.wheels
+  returns 8
+
+bus.seats
+  returns 144 //That's a big ass bus!!
+
+
+Note:  poop also adds _super, an alias/reference to the object's prototype and is used for convenience (and yes that's controversial too!).
